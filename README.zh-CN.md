@@ -38,6 +38,9 @@ npx -y skills add DmiyDing/clarify-first-skills --skill clarify-first
 - 安装后可能需要重启客户端。
 - 自动触发不稳定时，建议在对话里显式说“使用 `clarify-first` skill”。
 
+排查：
+- **Cursor 看不到 skill**：确认 `~/.cursor/skills/clarify-first/` 是“真实目录”且包含 `SKILL.md`。部分 Cursor 版本可能不会发现“软链接”的 skill 目录；请在安装时选择 Copy 而不是 Symlink，或手动把软链接替换为真实目录。
+
 ### 2）OpenAI Codex CLI
 
 OpenAI Codex CLI 会可靠加载 `AGENTS.md / AGENTS.override.md`（仓库内或 `~/.codex/` 下的全局默认）。想“默认生效”，建议把规则放在：

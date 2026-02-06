@@ -45,6 +45,9 @@ Notes:
 - You may need to restart your client after installation.
 - If auto-trigger is flaky, explicitly say: “Use the `clarify-first` skill.”
 
+Troubleshooting:
+- **Cursor doesn’t show the skill**: verify a real folder exists at `~/.cursor/skills/clarify-first/` with `SKILL.md`. Some Cursor builds may not discover **symlinked** skill folders; reinstall choosing “Copy” instead of “Symlink”, or manually replace the symlink with a real directory.
+
 ### 2) OpenAI Codex CLI (recommended integration)
 
 OpenAI Codex CLI reliably loads instruction files named `AGENTS.md` / `AGENTS.override.md` (and the same under `~/.codex/` for global defaults). To make this behavior “always on”, add it to either:
