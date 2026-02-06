@@ -1,6 +1,6 @@
 # Clarify First Skills (Agent Skill)
 
-[中文 README](./README.zh-CN.md)
+[Chinese README](./README.zh-CN.md)
 
 A risk-based clarification gate for AI agents and AI coding tools. When a request is ambiguous, underspecified, or conflicting, the agent must **pause**, summarize context, ask targeted clarification questions, and obtain confirmation before taking medium/high-risk actions.
 
@@ -112,4 +112,4 @@ Once you’ve validated the repo in real usage:
 
 ## GitHub Description (copy/paste)
 
-`Risk-based clarification gate for AI agents — ask before acting on ambiguous or high-impact requests. 需求不清先澄清再执行。`
+`Risk-based clarification gate for AI agents — ask before acting on ambiguous or high-impact requests.`

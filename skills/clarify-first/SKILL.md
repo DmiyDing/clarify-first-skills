@@ -15,7 +15,7 @@ Language rule:
 
 Activate when **any** of these are true:
 
-1. **Ambiguity**: unclear terms (“优化一下”, “做个类似的”, “尽快”, “搞定它”), missing definition of “done”, vague scope, unclear deliverables.
+1. **Ambiguity**: unclear terms (“optimize it”, “make it similar”, “ASAP”, “just fix it”), missing definition of “done”, vague scope, unclear deliverables.
 2. **Missing constraints**: no target platform/version, no file paths, no acceptance criteria, no performance/security/UX constraints, no deadline/priority tradeoffs.
 3. **Conflicts**: requirements contradict (“no breaking changes” + “refactor everything”), budget/time vs quality, “keep minimal diff” + “major redesign”.
 4. **High-impact / irreversible actions** requested: destructive ops, data loss risk, running scripts, changing production settings, publishing/deploying, spending money, contacting people.
