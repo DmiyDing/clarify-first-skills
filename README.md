@@ -32,29 +32,20 @@ This repo follows the Agent Skills convention (as used in Anthropic examples):
 
 ## Install
 
-### 1) Recommended: `add-skill` (multi-client installer)
+### 1) Recommended: `skills` CLI (multi-client installer)
 
-If your agent/client supports skills directories, this is the most convenient way to install from GitHub.
-
-Install into the current project:
+If your agent/client supports Agent Skills, install from GitHub:
 
 ```bash
-npx -y add-skill DmiyDing/clarify-first-skills --skill clarify-first
+npx -y skills add DmiyDing/clarify-first-skills --skill clarify-first
 ```
 
 Notes:
+- `add-skill` was renamed to `skills` (the old name may print a deprecation warning and forward automatically).
 - You may need to restart your client after installation.
 - If auto-trigger is flaky, explicitly say: “Use the `clarify-first` skill.”
 
-### 2) If your tool uses the `skills` CLI
-
-Some tools use a `skills` CLI style installer:
-
-```bash
-npx -y skills add https://github.com/DmiyDing/clarify-first-skills@clarify-first --agent <agent-name>
-```
-
-### 3) OpenAI Codex CLI (recommended integration)
+### 2) OpenAI Codex CLI (recommended integration)
 
 OpenAI Codex CLI reliably loads instruction files named `AGENTS.md` / `AGENTS.override.md` (and the same under `~/.codex/` for global defaults). To make this behavior “always on”, add it to either:
 

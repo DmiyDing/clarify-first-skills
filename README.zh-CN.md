@@ -25,27 +25,20 @@
 
 ## 安装
 
-### 1）推荐：`add-skill`（多客户端安装器）
+### 1）推荐：`skills` CLI（多客户端安装器）
 
-如果你的工具支持 skills 目录，这通常是最省心的方式。
+如果你的工具支持 Agent Skills，这是最省心的方式：
 
 ```bash
-npx -y add-skill DmiyDing/clarify-first-skills --skill clarify-first
+npx -y skills add DmiyDing/clarify-first-skills --skill clarify-first
 ```
 
 提示：
+- `add-skill` 已更名为 `skills`（旧命令可能会提示 deprecated 并自动转发）。
 - 安装后可能需要重启客户端。
 - 自动触发不稳定时，建议在对话里显式说“使用 `clarify-first` skill”。
 
-### 2）如果你的工具使用 `skills` CLI
-
-有些工具使用 `skills` CLI 风格的安装方式：
-
-```bash
-npx -y skills add https://github.com/DmiyDing/clarify-first-skills@clarify-first --agent <agent-name>
-```
-
-### 3）OpenAI Codex CLI
+### 2）OpenAI Codex CLI
 
 OpenAI Codex CLI 会可靠加载 `AGENTS.md / AGENTS.override.md`（仓库内或 `~/.codex/` 下的全局默认）。想“默认生效”，建议把规则放在：
 
