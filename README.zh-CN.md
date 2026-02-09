@@ -1,7 +1,7 @@
 # Clarify First (先澄清，再执行)
 
-[![License](https://img.shields.io/github/license/DmiyDing/clarify-first-skills)](./LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/DmiyDing/clarify-first-skills/pulls)
+[![License](https://img.shields.io/github/license/DmiyDing/clarify-first)](./LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/DmiyDing/clarify-first/pulls)
 [![Smithery](https://img.shields.io/badge/Smithery-Available-orange)](https://smithery.ai/skills/DmiyDing/clarify-first)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-blue)](https://cursor.com)
 
@@ -36,7 +36,7 @@ Clarify First 增加了一个战略性关卡：
 **支持 Agent Skills 的 Cursor、Claude Code 等：**
 
 ```bash
-npx -y skills add DmiyDing/clarify-first-skills
+npx -y skills add DmiyDing/clarify-first
 ```
 
 安装后重启客户端。若未自动触发，可在对话中说：「使用 clarify-first 技能」。

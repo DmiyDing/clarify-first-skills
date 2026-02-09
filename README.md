@@ -1,7 +1,7 @@
 # Clarify First
 
-[![License](https://img.shields.io/github/license/DmiyDing/clarify-first-skills)](./LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/DmiyDing/clarify-first-skills/pulls)
+[![License](https://img.shields.io/github/license/DmiyDing/clarify-first)](./LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/DmiyDing/clarify-first/pulls)
 [![Smithery](https://img.shields.io/badge/Smithery-Available-orange)](https://smithery.ai/skills/DmiyDing/clarify-first)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-blue)](https://cursor.com)
 
@@ -36,7 +36,7 @@ Clarify First adds a strategic gate:
 **For Cursor, Claude Code, and other clients that support Agent Skills:**
 
 ```bash
-npx -y skills add DmiyDing/clarify-first-skills
+npx -y skills add DmiyDing/clarify-first
 ```
 
 Restart your client after installation. If the skill doesn’t auto-trigger, say: *"Use the clarify-first skill."*
