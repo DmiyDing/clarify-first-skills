@@ -1,35 +1,35 @@
-# Clarify First (先澄清，再执行)
+# Clarify First: 先澄清，再执行
 
 [![License](https://img.shields.io/github/license/DmiyDing/clarify-first)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/DmiyDing/clarify-first/pulls)
 [![Spec](https://img.shields.io/badge/Spec-Agent--Skills-blueviolet)](https://agentskills.io/specification)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-blue)](https://cursor.com)
 
-**拒绝盲目猜测，让 AI 成为你的技术合伙人。**
+**拒绝盲目猜测。让 AI 在触碰你的代码前，先学会提问。**
 
-Clarify First 是一个防御性的 [Agent Skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)，它引入了一套 **风险分类协议 (Risk Triage)**。它让 Claude、Cursor 等 Agent 在面对模糊、冲突或高风险请求时，先停下来与你对齐目标和方案，避免在执行错误后再去返工。
+Clarify First 核心目标只有一个：**澄清 (Clarification)**。它强制 AI Agent 在需求模糊、存在冲突或涉及高风险时停下来。它将 AI 从一个鲁莽的执行者，转变为一个在行动前先对齐目标、明确范围的“深度思考合伙人”。
 
 [English](./README.md) · **协议：** [Apache-2.0](./LICENSE)
 
 ---
 
-## 为什么需要
+## 核心痛点：盲目执行 (Guess-and-Run)
+大多数 AI 编程助手都“太想帮忙了”。当你给出一个模糊指令（如“优化这段代码”）时，它们会立即开始重构，而完全不知道你真正关心的是运行速度、包体积，还是代码的可读性。
 
-AI 编程助手在需求不清时常常 **“猜着做”**，结果就是改错、返工和信任损耗。
+**Clarify First 彻底改变这种模式：先澄清，后代码。**
 
-Clarify First 增加了一个战略性关卡：
-*   🛑 **防止“盲目执行”**：不再需要撤回大规模的错误修改。
-*   🛡️ **安全护栏**：防止误删生产数据或误触发部署流程。
-*   🤝 **深度对齐**：强制 Agent 像资深工程师一样总结假设并提供多套方案（A/B/C）供你选择。
+## 核心价值
+*   ❓ **主动澄清**：只要目标有 1% 的不确定，AI 必须开口询问缺失的上下文。
+*   🤝 **方案对齐**：主动提供选项（A/B/C），确保你们在同一个频道上。
+*   🛑 **安全关卡**：在执行破坏性或高影响命令前，必须获得你的明确授权。
 
-## 效果对比
+## 效果对比：提问的力量
 
-| 未使用 Clarify First | 使用 Clarify First |
+| 盲目执行（标准模式） | 深度澄清（启用本技能） |
 |----------------------|--------------------|
-| 你：「把应用优化一下然后上线。」 | 你：「把应用优化一下然后上线。」 |
-| Agent 直接开始改代码、重构。 | Agent 先暂停，问：范围（小优化还是大重构？）、「上线」的定义、你倾向的选项。 |
-| 你：「其实我只想修一个慢查询……」 | 你：「小优化；上线=部署到 staging 且检查单全绿。」 |
-| 返工、心累。 | Agent 在明确范围内执行，无返工。 |
+| 你：「优化一下应用。」 | 你：「优化一下应用。」 |
+| Agent 直接开始大规模重构代码。 | Agent：**「风险：中。我需要先澄清：我们是优化运行速度、内存占用，还是代码可读性？」** |
+| 结果：代码坏了，优化的不是地方。 | 结果：AI 做了你真正需要的事情。 |
 
 ## 安装
 

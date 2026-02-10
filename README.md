@@ -1,37 +1,35 @@
-# Clarify First
+# Clarify First: The "Ask-Before-Act" Protocol
 
 [![License](https://img.shields.io/github/license/DmiyDing/clarify-first)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/DmiyDing/clarify-first/pulls)
 [![Spec](https://img.shields.io/badge/Spec-Agent--Skills-blueviolet)](https://agentskills.io/specification)
 [![Cursor Compatible](https://img.shields.io/badge/Cursor-Compatible-blue)](https://cursor.com)
 
-**Stop AI from guessing. Transform your Agent into a Technical Partner.**
+**Stop AI from guessing. Force your Agent to ask the right questions before touching your code.**
 
-Clarify First is a defensive [Agent Skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) that enforces a **Risk Triage** protocol. It makes Claude, Cursor, and other agents pause on vague, conflicting, or high-impact requests to align on scope and safety *before* changing files or running commands.
+Clarify First is a skill designed for one purpose: **Clarification**. It stops AI agents from blindly executing when requirements are vague, conflicting, or high-risk. It transforms the AI from a reckless executor into a thoughtful partner that aligns on scope *before* acting.
 
 [中文](./README.zh-CN.md) · **License:** [Apache-2.0](./LICENSE)
 
 ---
 
-## Why
+## The Problem: "Guess-and-Run"
+Most AI coding assistants try to be too helpful. When you give a vague instruction like *"Optimize this,"* they start refactoring immediately without knowing if you care about speed, readability, or memory.
 
-AI coding assistants often **guess and proceed** when your request is ambiguous. The result: incorrect refactors, broken dependencies, and lost trust.
+**Clarify First** flips the script: **Clarify First, Code Second.**
 
-Clarify First adds a strategic gate:
-*   🛑 **Prevents "Guess-and-Run":** No more undoing massive, incorrect edits.
-*   🛡️ **Safety Guardrails:** Stops accidental production deployments or data deletions.
-*   🤝 **Better Alignment:** Forces the agent to summarize assumptions and propose options (A/B/C) like a human senior engineer.
+## Core Features
+*   ❓ **Proactive Clarification:** If the goal is 1% ambiguous, the AI must ask for missing context.
+*   🤝 **Scope Alignment:** Proposes options (A/B/C) to make sure you are on the same page.
+*   🛑 **Execution Gate:** Stops the AI from running destructive or high-impact commands until you say "Yes".
 
-> **Note:** This is a platform-agnostic standard implementation. While originally designed for Claude and Cursor, it follows the open [Agent Skills specification](https://agentskills.io/specification), making it compatible with any future agentic tool that supports the standard.
+## Example: The Power of a Question
 
-## Example
-
-| Without Clarify First | With Clarify First |
+| Blind Execution (Standard) | Clarified Execution (With This Skill) |
 |-----------------------|--------------------|
-| You: *"Optimize the app and ship it."* | You: *"Optimize the app and ship it."* |
-| Agent starts refactoring and changing files. | Agent pauses and asks: scope (quick wins vs full refactor?), definition of "shipped", and your preferred option. |
-| You: *"I only wanted to fix one slow query…"* | You: *"Quick wins; shipped = deploy to staging with green checklist."* |
-| Rework and frustration. | Agent proceeds with clear scope; no rework. |
+| You: *"Optimize the app."* | You: *"Optimize the app."* |
+| Agent starts massive refactors. | Agent: **"Risk: Medium. I need to clarify: are we optimizing for runtime speed, bundle size, or code readability?"** |
+| Result: Broken code, wrong focus. | Result: The AI does exactly what you needed. |
 
 ## Install
 
