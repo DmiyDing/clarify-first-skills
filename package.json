@@ -29,7 +29,6 @@
   "files": [
     "clarify-first",
     "tooling",
-    "smithery.yaml",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
