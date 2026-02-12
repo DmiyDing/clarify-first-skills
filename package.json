@@ -1,7 +1,7 @@
 {
   "name": "clarify-first",
-  "version": "1.1.0",
-  "description": "An AI Agent Skill that enforces a 'Risk Triage -> Align -> Act' protocol. Triggers when requests are vague, conflict-ridden, or high-impact to prevent errors and side effects through proactive clarification.",
+  "version": "1.2.0",
+  "description": "An AI Agent Skill that enforces a 'Risk Triage -> Align -> Act' protocol. Triggers when requests contain vague verbs ('optimize', 'improve', 'fix', 'refactor', 'add feature'), missing context (no file paths, unknown dependencies), or high-impact actions (deploy, delete, migrate). Prevents 'silent assumptions' through proactive audit.",
   "scripts": {
     "verify-version": "node tooling/verify-version.js"
   },

@@ -1,5 +1,9 @@
 # Clarify First — Question Bank
 
+> **Version**: 1.2.0  
+> **Last Updated**: 2026-02-12  
+> **Compatibility**: Matches clarify-first/SKILL.md v1.2.0 (includes Execution Plan questions)
+
 Use this toolkit to formulate **Blocking Questions**.
 *   **Rule**: Pick only 1-3 questions that are *critical* for the next step.
 *   **Style**: Prefer multiple-choice questions over open-ended ones to reduce user effort.
@@ -33,3 +37,10 @@ Use this toolkit to formulate **Blocking Questions**.
 *   "Is this a **quick fix** or a **full redesign**? (A: **Quick patch**, B: **Proper refactor**, C: **Phased approach**)"
 *   "Is there a **deadline** or release date driving this? (A: **Urgent/today**, B: **This sprint**, C: **No rush**)"
 *   "Should I prioritize **speed of delivery** or **long-term maintainability**?"
+
+## 7. Execution Plan & Architecture Evolution (v1.2.0)
+*   "Before generating code, please review this **Execution Plan**. Which files should be created/modified? (A: **As listed**, B: **Modify: [list]**, C: **Skip Plan - Fast Track**)"
+*   "This change affects **multiple files** (>3). Should I proceed with the full refactor, or break it into phases? (A: **Full refactor**, B: **Phased approach**, C: **Single file first**)"
+*   "For this **architecture evolution**, what is the **rollback strategy** if something goes wrong? (A: **Git revert**, B: **Feature flag**, C: **Database migration rollback script**)"
+*   "The Execution Plan includes **breaking changes**. Are you prepared to handle **backward compatibility** issues? (A: **Yes, proceed**, B: **Add compatibility layer**, C: **Postpone breaking changes**)"
+*   "This plan involves modifying **dependencies**. Should I update all at once or incrementally? (A: **All at once**, B: **Incremental**, C: **Test compatibility first**)"

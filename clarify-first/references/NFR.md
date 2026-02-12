@@ -1,5 +1,9 @@
 # Clarify First — Non-Functional Requirements (NFR) Checklist
 
+> **Version**: 1.2.0  
+> **Last Updated**: 2026-02-12  
+> **Compatibility**: Matches clarify-first/SKILL.md v1.2.0
+
 When the user says "make it good/production-ready," check these:
 
 ## 1. Scale & Performance

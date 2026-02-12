@@ -101,6 +101,14 @@ This skill follows the [Agent Skills specification](https://agentskills.io/speci
 
 The skill uses progressive disclosure: the agent loads `clarify-first/SKILL.md` when the skill triggers, and only opens `references/*` when needed.
 
+## Future Roadmap
+
+See [`docs/FUTURE_OPTIMIZATIONS.md`](./docs/FUTURE_OPTIMIZATIONS.md) for planned enhancements in v1.3.0+:
+- **Adaptive Confidence Threshold**: Dynamic threshold adjustment based on user behavior (beginner: 90%, expert: 70%)
+- Enhanced multilingual support
+- Context memory improvements
+- Collaboration features
+
 ## Contributing and license
 
 Contributions are welcome. This project is licensed under [Apache-2.0](./LICENSE).
