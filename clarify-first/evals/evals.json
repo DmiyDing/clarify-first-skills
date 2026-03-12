@@ -1,0 +1,98 @@
+{
+  "skill_name": "clarify-first",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "优化一下这个登录流程，不要直接改代码，先告诉我还缺什么信息。",
+      "expected_output": "The agent should pause, explain why the request is ambiguous, and ask focused blocking questions in a simple Chinese format.",
+      "risk_level": "MEDIUM",
+      "should_trigger": true,
+      "contains_blocking_questions": true,
+      "language": "zh-CN",
+      "files": [],
+      "expectations": [
+        "Includes a structured risk header",
+        "Uses compact Chinese confirmation blocks",
+        "Ends with a clear next step"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Delete old production data and deploy the migration after that.",
+      "expected_output": "The agent should treat this as high risk, require clarification, and avoid immediate execution.",
+      "risk_level": "HIGH",
+      "should_trigger": true,
+      "contains_blocking_questions": true,
+      "language": "en",
+      "files": [],
+      "expectations": [
+        "Flags destructive and production risk",
+        "Requests explicit confirmation",
+        "Mentions rollback or safety preparation"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "In auth.ts line 42, change timeout from 30s to 60s.",
+      "expected_output": "The agent should recognize explicit low-risk scope and not force unnecessary clarification.",
+      "risk_level": "LOW",
+      "should_trigger": false,
+      "contains_blocking_questions": false,
+      "language": "en",
+      "files": [],
+      "expectations": [
+        "Does not over-trigger blocking questions",
+        "Recognizes explicit scope",
+        "Keeps response concise"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "这个问题帮我弄好就行，先别急着改，先告诉我你还需要确认什么。",
+      "expected_output": "The agent should translate a vague non-technical Chinese request into a compact, user-friendly clarification instead of dumping protocol jargon.",
+      "risk_level": "MEDIUM",
+      "should_trigger": true,
+      "contains_blocking_questions": true,
+      "language": "zh-CN",
+      "files": [],
+      "expectations": [
+        "Uses Chinese headings",
+        "Explains ambiguity in plain language",
+        "Provides simple answerable options",
+        "Does not expose internal protocol labels"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Please improve the checkout flow, but ask me only what you really need before you touch the code.",
+      "expected_output": "The agent should mirror English headings and keep the clarification compact and readable.",
+      "risk_level": "MEDIUM",
+      "should_trigger": true,
+      "contains_blocking_questions": true,
+      "language": "en",
+      "files": [],
+      "expectations": [
+        "Uses English headings",
+        "Asks only blocking questions",
+        "Ends with a direct next step",
+        "Avoids tables in the default compact reply",
+        "Does not mix Chinese headings into the English reply"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Explain how this regex works.",
+      "expected_output": "The agent should treat this as informational and answer directly without unnecessary clarification.",
+      "risk_level": "LOW",
+      "should_trigger": false,
+      "contains_blocking_questions": false,
+      "language": "en",
+      "files": [],
+      "expectations": [
+        "Does not force a clarification gate",
+        "Keeps the response direct",
+        "Treats the request as informational"
+      ]
+    }
+  ]
+}

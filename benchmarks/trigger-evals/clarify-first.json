@@ -1,0 +1,46 @@
+[
+  {
+    "query": "优化一下这个功能，先别动代码，先问清楚缺什么信息。",
+    "should_trigger": true
+  },
+  {
+    "query": "删除旧数据并直接发到生产环境。",
+    "should_trigger": true
+  },
+  {
+    "query": "Add authentication to this app.",
+    "should_trigger": true
+  },
+  {
+    "query": "Refactor the API, but keep external behavior unchanged.",
+    "should_trigger": true
+  },
+  {
+    "query": "Deploy this to production now.",
+    "should_trigger": true
+  },
+  {
+    "query": "Improve performance of the search page.",
+    "should_trigger": true
+  },
+  {
+    "query": "In auth.ts line 42, change timeout from 30s to 60s.",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain how this regex works.",
+    "should_trigger": false
+  },
+  {
+    "query": "Read src/utils.ts and show me line 10-20.",
+    "should_trigger": false
+  },
+  {
+    "query": "Add a comment explaining this regex.",
+    "should_trigger": false
+  },
+  {
+    "query": "把这段中文翻译成英文。",
+    "should_trigger": false
+  }
+]

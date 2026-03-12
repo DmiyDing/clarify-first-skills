@@ -23,12 +23,15 @@ When a request is ambiguous, high-impact, or potentially destructive, follow the
 
 # Output Template
 1. [RISK: <LEVEL> | TRIGGER: <rule-id> | CONFIDENCE: <n>% | PLAN-ID: <id-or-pending>] - Reason
-2. CONTEXT AUDIT: (Verified, Must Access But Not Visible)
-3. ALIGNMENT SNAPSHOT: (Goal, Constraints, Unknowns)
-4. BLOCKING QUESTIONS: (Q1, Q2)
-5. OPTIONS: (A: Recommended, B: Quick/Alternative)
-6. NEXT STEP: "Please confirm..."
+2. Default user-facing layout should be compact:
+3. English prompt -> CONFIRMED / NEED FROM YOU / OPTIONS / NEXT STEP
+4. Chinese prompt -> 我已确认 / 还需确认 / 可选方案 / 下一步
+5. Never mix Chinese and English in the same heading.
+6. Use the full audit/snapshot template only when the task is HIGH risk, multi-step, or the user asks for detail.
 7. FINAL RECONCILIATION (MEDIUM/HIGH): Plan-ID, approved vs actual files, amendment status, rollback status
+8. In compact mode, do not output internal protocol labels like `CONTEXT AUDIT`, `ALIGNMENT SNAPSHOT`, or `BLOCKING QUESTIONS`.
+9. In compact mode, do not use markdown tables unless the user explicitly wants a comparison table.
+10. In compact mode, start directly with the risk header and the clarification itself. Avoid meta narration like "starting protocol" or "entering risk triage".
 
 # Notes
 - For failed file search only: include a short "Audit & Search Log" with attempted tool/pattern.

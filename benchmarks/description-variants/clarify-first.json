@@ -1,0 +1,17 @@
+{
+  "baseline_label": "current",
+  "variants": [
+    {
+      "label": "trigger_forward_en",
+      "description": "This skill should be used when a request is ambiguous, underspecified, conflicting, or high impact. It is especially intended for vague requests like optimize a feature, improve performance, fix a bug without scope, refactor the API, update a login flow, or add authentication; for requests missing file paths, dependencies, environment, or acceptance criteria; and for risky actions like deploy to production, delete old data, overwrite files, or run migrations. It should not be used for purely informational requests or explicitly scoped low-risk changes. The skill enforces risk triage, blocking clarification, explicit confirmation for medium/high-risk work, and prevents silent assumptions before execution."
+    },
+    {
+      "label": "trigger_forward_bilingual",
+      "description": "This skill should be used when a request is ambiguous, underspecified, conflicting, or high impact. It is especially intended for vague requests like optimize, improve performance, fix, refactor the API, update the login flow, add authentication, 优化一下这个功能, 修一下这个问题, or 删除旧数据并直接发到生产环境; for requests missing file paths, dependencies, environment, or acceptance criteria; and for risky actions like deploy to production, delete old data, overwrite files, or run migrations. It should not be used for purely informational requests or explicitly scoped low-risk changes. The skill enforces risk triage, blocking clarification, explicit confirmation for medium/high-risk work, and prevents silent assumptions before execution."
+    },
+    {
+      "label": "high_risk_first",
+      "description": "This skill should be used when a request could cause damage or depends on hidden assumptions: deploy to production, delete old data, overwrite files, run migrations, add authentication, refactor the API, improve performance, optimize a feature, or fix a bug without clear scope. It is intended for requests with missing file paths, unknown dependencies, unclear environment, or unclear acceptance criteria, and for medium/high-risk work that needs explicit confirmation before execution. It should not be used for purely informational requests, translations, or explicitly scoped low-risk edits. The skill enforces risk triage, blocking clarification, and prevents silent assumptions before execution."
+    }
+  ]
+}

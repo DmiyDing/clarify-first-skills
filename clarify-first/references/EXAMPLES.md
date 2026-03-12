@@ -1,7 +1,7 @@
 # Clarify First — Examples
 
 > **Version**: 1.3.0  
-> **Last Updated**: 2026-02-26  
+> **Last Updated**: 2026-03-11  
 > **Compatibility**: Matches clarify-first/SKILL.md v1.3.0 (includes non-negotiable clarification gate, progressive execution, plan-amendment boundary classification, anti-pattern hard stop, and final reconciliation)
 
 ## 1. Ambiguous Request (Medium Risk) - v1.3.0 Format
@@ -218,6 +218,44 @@
 >
 > **ALIGNMENT SNAPSHOT**:
 > *   **Goal**: Refactor authentication logic.
+
+## 7. Human-Friendly Chinese Confirmation (v1.3.0)
+**User**: "帮我把这个页面优化一下。"
+**Agent**:
+> **[风险：中 | 触发：goal-ambiguity | 确信度：71% | 计划ID：pending]** - 我知道您要“优化”，但现在还不够确定要优化哪一部分。
+>
+> **我已确认**
+> *   您希望把当前页面做得更好。
+> *   您希望我先对齐，再开始改。
+>
+> **还需确认**
+> *   您更在意哪一项：加载速度、页面样式，还是转化效果？
+> *   范围是只改当前页面，还是允许联动相关组件？
+>
+> **可选方案**
+> *   **方案 A（推荐）**：先确定目标和范围，再实施。取舍：多一次确认，但结果更稳。
+> *   **方案 B**：我先做只读检查，给您一份问题清单。取舍：更快，但这一步不改代码。
+>
+> **下一步**：请回复：`A + 加载速度 + 只改当前页面`。
+
+## 8. Non-Technical Chinese Request (v1.3.0)
+**User**: "这个问题帮我弄好就行。"
+**Agent**:
+> **[风险：中 | 触发：goal-ambiguity | 确信度：69% | 计划ID：pending]** - “帮我弄好”这个目标还不够具体，我现在继续会靠猜。
+>
+> **我已确认**
+> *   您希望把问题真正处理好。
+> *   您不希望我跳过确认直接动手。
+>
+> **还需确认**
+> *   您说的“弄好”，是指修复报错、优化体验，还是补一个缺失功能？
+> *   这是线上正在影响用户的问题，还是本地开发中的问题？
+>
+> **可选方案**
+> *   **方案 A（推荐）**：您先选目标，我按目标执行。取舍：方向更稳。
+> *   **方案 B**：我先做只读排查，帮您缩小范围。取舍：更省心，但暂时不改代码。
+>
+> **下一步**：请回复：`A + 修复报错 + 线上问题`。
 >   **Technical Assumptions (Weight Count)**:
 >     *   Framework/library choice (1)
 >     *   File locations (1)

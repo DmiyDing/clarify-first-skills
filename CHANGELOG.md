@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+- **Official Eval Assets**: Added `clarify-first/evals/evals.json` and `benchmarks/trigger-evals/clarify-first.json` so the repository ships official-style skill test prompts and trigger benchmark prompts.
+- **Benchmark Wrapper**: Added `tooling/run_trigger_benchmarks.py` and `npm run benchmark:trigger` for Anthropic-style trigger evaluation with the installed `skill-creator` scripts.
+- **Description A/B Runner**: Added `tooling/run_trigger_ab.py`, `npm run benchmark:ab`, and `benchmarks/description-variants/clarify-first.json` for description-only benchmark comparison.
+- **Portable Skill Validation Wrapper**: Added `tooling/validate_skill.py` so repository validation no longer depends on one machine-specific validator path.
+- **CI Validation Workflow**: Added `.github/workflows/validate-skill.yml` to run version checks and skill validation on pushes and pull requests.
+- **Benchmark Notes**: Added `benchmarks/README.md` to document runner settings, pass criteria, and the current benchmark baseline.
+- **Documentation (third-round)**: Eval schema (`clarify-first/evals/README.md`), repository structure in README and README.zh-CN, official test/measure/refine blog link, and "Next phase: trigger quality" execution discipline in `benchmarks/README.md`.
+- **Human-Friendly Confirmation Format**: Added a simpler default clarification layout emphasizing confirmed facts, missing inputs, options, and next step.
+- **Readable Chinese Example Set**: Added user-friendly Chinese clarification examples for broad product requests, non-technical phrasing, and compact high-risk escalation.
+- **Plain-Language Question Shortcuts**: Added simpler Chinese blocking-question patterns so the skill can ask answerable questions without protocol-heavy wording.
+- **Language-Mirroring Eval Coverage**: Expanded `clarify-first/evals/evals.json` with Chinese non-technical and English compact-format expectations.
+- **Compact Reply Guardrail**: The default clarification reply now explicitly forbids internal audit labels, protocol meta narration, and tables unless a detailed view is actually needed.
 - **Non-Negotiable Clarification Gate**: If intent/scope/criteria remain unclear, the agent must stop immediately and ask blocking questions before any MEDIUM/HIGH-risk execution.
 - **Progressive Execution Rule**: Multi-step plans with 2+ dependent HIGH-risk actions now require step-by-step execution with confirmation between steps.
 - **Plan Signature Anchor**: Approved plans now include a short `Plan-ID` anchor for deterministic step tracking during progressive execution.
@@ -27,6 +39,18 @@ All notable changes to this project will be documented in this file.
 - **Final Reconciliation Phase**: Added post-execution plan-vs-actual audit output requirement for MEDIUM/HIGH tasks.
 
 ### Changed
+- **Portable Validation & Benchmarking**: `npm run validate:skill` and `npm run benchmark:trigger` now discover Anthropic `skill-creator` via environment variables or common install locations instead of hardcoded local paths.
+- **Benchmark Workflow Notes**: Added a first-pass A/B result note showing the current baseline (`5/11`) and that three aggressive description candidates did not improve recall.
+- **Description Alignment**: Rewrote the skill frontmatter description in third-person style and added an explicit "when not to use" boundary for informational and explicitly scoped low-risk requests.
+- **Benchmark Output Hygiene**: Benchmark summaries now write repository-relative paths, and benchmark result directories are ignored from source control.
+- **Contribution Guide Consistency**: Updated README / README.zh-CN / CONTRIBUTING so versioning and validation instructions match the current frontmatter schema and portable validation flow.
+- **SKILL Structure Tightening**: Reduced duplication in `clarify-first/SKILL.md`, moved detailed confirmation variants to references, and added a short "Common Edge Cases" section.
+- **Eval & Benchmark Coverage**: Added machine-checkable eval metadata and expanded the trigger benchmark set for stronger regression coverage.
+- **README Discoverability**: Added CI badge, validation wording, benchmark notes link, and one-line descriptions for each reference file.
+- **Frontmatter Schema Compliance**: Removed unsupported `version` and `compatibility` keys from `clarify-first/SKILL.md` frontmatter to match the latest official validator rules.
+- **Description Hardening**: Rewrote the skill description to fit the latest schema restrictions and to be more trigger-forward without unsupported angle brackets.
+- **Chinese Guidance UX**: Updated `references/zh-CN.md` and `.cursorrules` so normal clarification output defaults to a compact, easier-to-read four-block structure.
+- **Open-Source Validation Flow**: Updated README / README.zh-CN / CONTRIBUTING with official-style validation and benchmark commands.
 - **Multi-Turn Protocol**: Replaced "ambiguous after 2 rounds -> auto-act" with hard confirmation gate for MEDIUM/HIGH-risk execution.
 - **Fast Track Boundary**: Fast Track now requires zero unresolved ambiguity after audit, not just explicit scope markers.
 - **Tone Guidance**: Added "Senior Pair Programmer" phrasing standard to keep strict protocol while reducing adversarial tone.

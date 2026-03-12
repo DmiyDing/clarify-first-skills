@@ -1,9 +1,7 @@
 ---
 name: clarify-first
-version: 1.3.0
-description: "An AI Agent Skill that enforces a 'Risk Triage -> Align -> Act' protocol. Triggers when requests contain vague verbs ('optimize', 'improve', 'fix', 'refactor', 'add feature'), missing context (no file paths, unknown dependencies), or high-impact actions (deploy, delete, migrate). Prevents 'silent assumptions' through proactive audit."
+description: "This skill should be used when a request is ambiguous, underspecified, conflicting, or high impact. It is intended for vague verbs like optimize, improve, fix, refactor, and add feature; for missing file paths or unknown dependencies; and for risky actions like deploy, delete, overwrite, or migrate. It should not be used for purely informational requests or explicitly scoped low-risk changes. The skill enforces risk triage, blocking clarification, explicit confirmation for medium/high-risk work, and prevents silent assumptions before execution."
 license: Apache-2.0
-compatibility: "Claude Code, Cursor, or any agent that supports Agent Skills and file-reading tools."
 metadata:
   author: DmiyDing
   execution_precedence: TERMINAL_GUARDRAIL
@@ -81,6 +79,12 @@ If multiple skills/prompts are active and instructions conflict:
 *   **"Explain how this function works"** → Informational only
 *   **"Read the file at src/utils.ts and show me line 10-20"** → Read-only, explicit path
 *   **"Fix bug in `src/auth.ts` line 42 by changing timeout 30→60"** → Explicit scope overrides vague verb ("fix"), LOW risk
+
+## Common Edge Cases
+*   **Explicit scope beats vague verbs**: If path + anchor + acceptance criteria are explicit, "fix" or "improve" does not block fast track.
+*   **"Just do it" does not bypass HIGH risk**: Destructive or production-impacting work still requires explicit confirmation.
+*   **Multi-step HIGH risk stays stepwise**: Delete -> migrate -> deploy must pause between steps and keep the same `Plan-ID`.
+*   **Informational stays informational**: Explanations, translations, and read-only lookups should not trigger clarification just because the topic sounds complex.
 
 ## Internal Process (Chain of Thought Audit)
 
@@ -220,6 +224,39 @@ Don't ask open-ended questions. Propose 2-3 concrete paths.
 *   **Language Mirroring**: Match the user's language and translate template headers (for example, "ALIGNMENT SNAPSHOT") while preserving template structure.
 *   **Senior Pair Programmer Voice**: Ask with collaborative intent ("To ensure I match your intent..."), not blame.
 *   **Compact/Expert Mode (Optional)**: If user explicitly requests `MODE=EXPERT`, keep same safety gates but compress output to structured risk header + one core blocker + `Plan-ID`.
+*   **Human-Friendly Default**: For normal users, prefer plain language over protocol jargon. Minimize section count and explain only the decision-critical facts.
+*   **Readable Confirmation Format**: Default clarification output should usually fit in 4 concise blocks after the risk header: what is confirmed, what is missing, available options, and next step.
+
+## Default Confirmation Format
+
+Use this as the default user-facing format for ambiguous or MEDIUM/HIGH-risk tasks unless the situation genuinely requires more detail.
+
+### Chinese
+
+1. `**[风险: ...]**` 一句话说明为什么暂停。
+2. `**我已确认**`：只列已验证事实。
+3. `**还需确认**`：只列真正阻塞执行的点。
+4. `**可选方案**`：给 2 个方案，优先推荐一个，并写清核心取舍。
+5. `**下一步**`：明确告诉用户回复什么我就继续。
+
+### English
+
+1. `**[Risk: ...]**` one-line reason for the pause.
+2. `**Confirmed**` for verified facts only.
+3. `**Need From You**` for true blockers only.
+4. `**Options**` with 2 choices and one-line tradeoffs.
+5. `**Next Step**` with a direct confirmation request.
+
+### Formatting Rules
+
+1. Keep the default confirmation output scannable in under ~12 lines when possible.
+2. Do not dump the full protocol unless the task is HIGH risk, multi-step, or the user explicitly asks for detail.
+3. Prefer plain wording such as "what I know" and "what I need" over abstract labels when the user appears non-technical.
+4. Keep bilingual fidelity: Chinese prompts must use Chinese titles; English prompts must use English titles.
+5. Never mix Chinese and English in the same heading. Pick one language based on the user's prompt language.
+6. In the default compact mode, DO NOT surface internal section names like `CONTEXT AUDIT`, `ALIGNMENT SNAPSHOT`, or `BLOCKING QUESTIONS`.
+7. In the default compact mode, DO NOT use tables unless the user asked for a comparison table.
+8. In the default compact mode, do not start with "I am starting protocol/risk triage". Start directly with the risk header and the concrete clarification.
 
 ## Security & Privacy Guardrail
 When auditing context, assumptions, or impact:
@@ -228,7 +265,40 @@ When auditing context, assumptions, or impact:
 *   Use masked forms like `sk-***`, `token=***`, `email=***`.
 
 ## Output Template (For MEDIUM/HIGH Risk or Ambiguity)
-**[RISK: <LOW|MEDIUM|HIGH> | TRIGGER: <rule-id> | CONFIDENCE: <n>% | PLAN-ID: <id-or-pending>]** - *Concise reasoning for the pause.*
+Default human-readable form:
+
+**[RISK: <LOW|MEDIUM|HIGH> | TRIGGER: <rule-id> | CONFIDENCE: <n>% | PLAN-ID: <id-or-pending>]** - *Concise reason for the pause.*
+
+Keep the compact default form to these 4 blocks after the risk header:
+1. `Confirmed` / `我已确认`
+2. `Need From You` / `还需确认`
+3. `Options` / `可选方案`
+4. `Next Step` / `下一步`
+
+Use only one language in headings. Do not expand beyond this compact form unless HIGH risk, multi-step execution, or explicit request for detail.
+
+Minimal example:
+
+```markdown
+**[Risk: Medium | Trigger: scope-ambiguity | Confidence: 72% | Plan-ID: pending]** - I can continue, but I would be guessing about the scope.
+
+**Confirmed**
+- You want the login flow improved.
+
+**Need From You**
+- Should I limit the change to `auth.ts`, or can I update related auth files too?
+
+**Options**
+- **Option A (Recommended)**: Confirm scope first, then implement. Tradeoff: safer, slightly slower.
+- **Option B**: I do a read-only diagnosis first. Tradeoff: faster now, but no code changes yet.
+
+**Next Step**
+- Reply with: `A + auth.ts only`.
+```
+
+For more examples and language variants, see `references/CONFIRMATION_FORMATS.md`.
+
+Expanded form (use only when needed):
 
 **CONTEXT AUDIT**:
 *   **Verified**: [Entity A, Entity B] (redacted if sensitive)
@@ -274,6 +344,7 @@ When auditing context, assumptions, or impact:
 
 ## References
 *   `references/EXAMPLES.md` (Updated ambiguity patterns)
+*   `references/CONFIRMATION_FORMATS.md` (Human-friendly confirmation output patterns)
 *   `references/QUESTION_BANK.md` (Deep-dive questions)
 *   `references/SCENARIOS.md` (Context-loss handling)
 *   `references/zh-CN.md` (Chinese phrasing)

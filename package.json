@@ -1,9 +1,12 @@
 {
   "name": "clarify-first",
   "version": "1.3.0",
-  "description": "An AI Agent Skill that enforces a 'Risk Triage -> Align -> Act' protocol. Triggers when requests contain vague verbs ('optimize', 'improve', 'fix', 'refactor', 'add feature'), missing context (no file paths, unknown dependencies), or high-impact actions (deploy, delete, migrate). Prevents 'silent assumptions' through proactive audit.",
+  "description": "Ask-before-act skill for coding agents. Stops silent assumptions, enforces clarification on ambiguous or high-risk requests, and keeps risky execution auditable.",
   "scripts": {
-    "verify-version": "node tooling/verify-version.js"
+    "verify-version": "node tooling/verify-version.js",
+    "validate:skill": "python3 tooling/validate_skill.py",
+    "benchmark:trigger": "python3 tooling/run_trigger_benchmarks.py",
+    "benchmark:ab": "python3 tooling/run_trigger_ab.py"
   },
   "keywords": [
     "ai",
@@ -28,6 +31,9 @@
   "homepage": "https://github.com/DmiyDing/clarify-first#readme",
   "files": [
     "clarify-first",
+    "benchmarks/README.md",
+    "benchmarks/trigger-evals",
+    "benchmarks/description-variants",
     "tooling",
     "README.md",
     "LICENSE",

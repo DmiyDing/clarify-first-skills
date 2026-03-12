@@ -14,3 +14,5 @@ coverage/
 .claude/
 docs/
 tooling/test-triggers.js
+benchmarks/results/
+benchmarks/ab-results/

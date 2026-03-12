@@ -1,0 +1,33 @@
+name: validate-skill
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch Anthropic skill-creator
+        run: git clone --depth=1 https://github.com/anthropics/skills.git /tmp/anthropic-skills
+
+      - name: Configure skill-creator path
+        run: echo "SKILL_CREATOR_ROOT=/tmp/anthropic-skills/skills/skill-creator" >> "$GITHUB_ENV"
+
+      - name: Verify versions
+        run: npm run verify-version
+
+      - name: Validate skill
+        run: npm run validate:skill

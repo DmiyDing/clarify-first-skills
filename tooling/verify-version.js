@@ -11,17 +11,11 @@ const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 const pkgVersion = packageJson.version;
 console.log(`package.json version: ${pkgVersion}`);
 
-// 2. Get version from skill.md (frontmatter)
-const skillMdContent = fs.readFileSync(skillMdPath, 'utf8');
-const skillVersionMatch = skillMdContent.match(/version:\s*([0-9.]+)/);
-if (!skillVersionMatch) {
-  console.error('Error: Could not find version in clarify-first/SKILL.md frontmatter');
-  process.exit(1);
-}
-const skillVersion = skillVersionMatch[1];
-console.log(`skill.md version:     ${skillVersion}`);
+// 2. Confirm skill file exists and is readable
+fs.readFileSync(skillMdPath, 'utf8');
+console.log('skill.md status:      present');
 
-// 3. Get version from CHANGELOG.md (first H2)
+// 3. Get version from CHANGELOG.md (first released H2)
 const changelogContent = fs.readFileSync(changelogPath, 'utf8');
 const changelogMatch = changelogContent.match(/## \[([0-9.]+)\]/);
 if (!changelogMatch) {
@@ -72,7 +66,7 @@ referenceFiles.forEach(filePath => {
 });
 
 // Compare core versions
-if (pkgVersion !== skillVersion || pkgVersion !== changelogVersion) {
+if (pkgVersion !== changelogVersion) {
   console.error('\n❌ Core version mismatch detected!');
   process.exit(1);
 }

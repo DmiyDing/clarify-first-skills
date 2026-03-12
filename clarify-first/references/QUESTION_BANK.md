@@ -1,12 +1,23 @@
 # Clarify First — Question Bank
 
 > **Version**: 1.3.0  
-> **Last Updated**: 2026-02-26  
+> **Last Updated**: 2026-03-11  
 > **Compatibility**: Matches clarify-first/SKILL.md v1.3.0 (includes Execution Plan, Amendment Boundary, and Pathfinder questions)
 
 Use this toolkit to formulate **Blocking Questions**.
 *   **Rule**: Pick only 1-3 questions that are *critical* for the next step.
 *   **Style**: Prefer multiple-choice questions over open-ended ones to reduce user effort.
+*   **User-Friendly Default**: Prefer plain wording that non-technical users can answer quickly.
+
+## 0. Plain-Language Shortcuts
+Use these when the user is speaking in broad or non-technical language.
+
+*   "您更希望我先做哪一步？(A: **先查原因**, B: **先给方案**, C: **直接改**) "
+*   "这次更重要的是哪件事？(A: **先恢复可用**, B: **先查清根因**, C: **顺手优化**) "
+*   "范围只限当前问题，还是可以顺带调整相关模块？(A: **只处理当前问题**, B: **允许联动相关模块**) "
+*   "这是线上影响用户的问题，还是本地开发中的问题？(A: **线上**, B: **测试/预发**, C: **本地开发**) "
+*   "您说的‘优化’更偏向哪一类？(A: **更快**, B: **更稳定**, C: **更好看/更好用**) "
+*   "如果现在信息还不够，您希望我怎么继续？(A: **先问清再改**, B: **先只读排查**, C: **先给执行方案**) "
 
 ## 1. Scope & Boundaries (What is In/Out?)
 *   "Do you want this change applied to **only this file** or **all similar occurrences** in the repo?"
@@ -84,3 +95,11 @@ Use this toolkit to formulate **Blocking Questions**.
 
 ## 17. Final Reconciliation
 *   "Execution finished. Should I output a compact plan-vs-actual reconciliation report for audit? (A: **Yes, include report**, B: **No, skip report**) "
+
+## 18. Chinese User-Friendly Defaults
+Use these when the request is in Chinese and the user is not giving code-level constraints yet.
+
+*   "这次改动，您希望我只改当前文件，还是把相关联的地方一起理顺？(A: **只改当前文件**, B: **相关地方一起改**) "
+*   "您更在意什么结果？(A: **先能用**, B: **先稳定**, C: **先整洁/可维护**) "
+*   "如果要我先确认一件事再继续，最关键的是哪项？(A: **改动范围**, B: **上线环境**, C: **验收标准**) "
+*   "这一步做完后，您希望我怎么验证？(A: **我自测后给结果**, B: **先给您方案再执行**, C: **先做只读检查**) "
